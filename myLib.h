@@ -1,8 +1,3 @@
-#include <iostream>
-#include <conio.h>
-
-using namespace std;
-
 void Estado();
 void Pantalla();
 void Teclado();
@@ -15,3 +10,7 @@ void End();
 void Clear();
 void delay();
 void Reset();
+int RUN();
+int MENU();
+int FIN();
+int GAMEOVER();

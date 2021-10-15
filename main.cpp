@@ -1,20 +1,25 @@
+#include <iostream>
+#include <conio.h>
+#include "myLib.h"
 #include "myLib.cpp"
 
-int main(){
+
+int main() {
 	Estado();
-	while(run == true){
-		while(menu == true){
+	std::cout << RUN();
+	while (RUN() == 0) {
+		while (MENU() == 0) {
 			Menu();
 			Teclado_Menu();
 		}
-		while(fin == true){
+		while (FIN() == 0) {
 			Pantalla();
 			delay();
 			Teclado();
 			Direccion();
 			Direccion2();
 		}
-		while(gameover == true){
+		while (GAMEOVER() == 0) {
 			End();
 			Teclado_End();
 		}
