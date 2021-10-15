@@ -6,7 +6,6 @@
 
 int main() {
 	Estado();
-	std::cout << RUN();
 	while (RUN() == 0) {
 		while (MENU() == 0) {
 			Menu();
