@@ -30,7 +30,7 @@ void Reset(){
 	nTaila = 0;
 	nTailb = 0;
 	dira = UP;
-	dirb = DOWN;
+	dirb = DOWNb;
 	for (int m = 0; m < height; m++){ 		//condicional caso de obstaculo (berifica si la posision es igual a bloque, valor otorgado en el primer condicional)
 		for (int n = 0; n < width; n++){
 			if (obs[m][n] == '#'){
@@ -196,20 +196,21 @@ void Direccion(){
 			ax = width/2;
 			ay = height - 3;
 		}
-		if ((tailaX[j] == bx && tailaY[j] == by) || (ax == bx && ay == by) ){
+		if (tailaX[j] == bx && tailaY[j] == by){
 			obs[by][bx] = '#';
 			vidas++;
 			colision = true;
 		}
 	}
 	
-	if (obs[ay][ax] == '#'){
-		ax = width/2;
-		ay = height - 3;
-	}
 	if (vidas == 5){
 		gameover = true;
 		fin = false;
+	}
+	
+	if (obs[ay][ax] == '#'){
+		ax = width/2;
+		ay = height - 3;
 	}
 }
 
@@ -259,21 +260,21 @@ void Direccion2(){
 			bx = width/2;
 			by = 2;
 		}
-		if ((tailbX[j] == ax && tailbY[j] == ay) || (bx == ax && by == ay)){
+		if (tailbX[j] == ax && tailbY[j] == ay){
 			obs[ay][ax] = '#';
 			vidas++;
 			colision = true;
 		}
 	}
 	
-	if (obs[by][bx] == '#'){
-		bx = width/2;
-		by = 2;
-	}
-	
 	if (vidas == 5){
 		gameover = true;
 		fin = false;
+	}
+	
+	if (obs[by][bx] == '#'){
+		bx = width/2;
+		by = 2;
 	}
 }
 
