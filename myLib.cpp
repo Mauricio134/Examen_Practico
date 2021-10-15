@@ -1,7 +1,7 @@
 #include "myLib.h"
 
 bool fin = false, gameover = false, cha = false, chb = false, colision = false, run, menu = true;
-const int width{20}, height{20};
+const int width{8}, height{8};
 int ax, ay, bx, by, time{0}, x, y, vidas{0};
 enum eDirectiona {LEFT, RIGHT, UP, DOWN};
 enum eDirectionb {LEFTb, RIGHTb, UPb, DOWNb};
@@ -31,7 +31,7 @@ void Reset(){
 	nTailb = 0;
 	dira = UP;
 	dirb = DOWNb;
-	for (int m = 0; m < height; m++){ 		//condicional caso de obstaculo (berifica si la posision es igual a bloque, valor otorgado en el primer condicional)
+	for (int m = 0; m < height; m++){
 		for (int n = 0; n < width; n++){
 			if (obs[m][n] == '#'){
 				obs[m][n] = ' ';
@@ -105,6 +105,17 @@ void Pantalla(){
 	}
 	cout << "Gusano 1 ( " << ax << " , " << ay << " )";
 	cout << "    " << "Gusano 2 ( " << bx << " , " << by << " )";
+	if (colision == true){
+		for (int e = 0; e < height; e++){
+			for (int f = 0; f < width; f++){
+				if (obs[e][f] == '#'){
+					cout << "\nGusano 1 - ";
+					cout << "Gusano 2";
+					cout << " ---> Chocaron en ( " << e << " , " << f << " )";
+				}
+			}
+		}
+	}
 }
 
 void Teclado(){
@@ -196,10 +207,12 @@ void Direccion(){
 			ax = width/2;
 			ay = height - 3;
 		}
-		if (tailaX[j] == bx && tailaY[j] == by){
+		if (bx == tailaX[j] && by == tailaY[j]){
 			obs[by][bx] = '#';
 			vidas++;
 			colision = true;
+			bx = width/2;
+			by = 2;
 		}
 	}
 	
@@ -260,10 +273,12 @@ void Direccion2(){
 			bx = width/2;
 			by = 2;
 		}
-		if (tailbX[j] == ax && tailbY[j] == ay){
+		if (ax == tailbX[j] && ay == tailbY[j]){
 			obs[ay][ax] = '#';
 			vidas++;
 			colision = true;
+			ax = width/2;
+			ay = height - 3;
 		}
 	}
 	
